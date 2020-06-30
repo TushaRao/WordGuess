@@ -7,8 +7,6 @@ pygame.init()
 WIDTH, HEIGHT = 800, 500
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("WORD GUESSING GAME!")
-
-# button variables
 RADIUS = 20
 GAP = 15
 letters = []
@@ -20,24 +18,23 @@ for i in range(26):
     y = starty + ((i // 13) * (GAP + RADIUS * 2))
     letters.append([x, y, chr(A + i), True])
 
-# fonts
+
 LETTER_FONT = pygame.font.SysFont('comicsans', 40)
 WORD_FONT = pygame.font.SysFont('comicsans', 60)
 TITLE_FONT = pygame.font.SysFont('comicsans', 70)
 
-# load images.
+
 images = []
 for i in range(7):
     image = pygame.image.load("image" + str(i) + ".png")
     images.append(image)
 
-# game variables
+
 hangman_status = 0
 words = ["TOMMY", "CHEESE", "CATCH", "JERRY","TOMCAT"]
 word = random.choice(words)
 guessed = []
 
-# colors
 WHITE = (255,255,255)
 BLACK = (0,0,0)
 
@@ -45,11 +42,10 @@ BLACK = (0,0,0)
 def draw():
     win.fill(WHITE)
 
-    # draw title
+  
     text = TITLE_FONT.render("TOM & JERRY", 1, BLACK)
     win.blit(text, (WIDTH/2 - text.get_width()/2, 20))
 
-    # draw word
     display_word = ""
     for letter in word:
         if letter in guessed:
@@ -59,7 +55,7 @@ def draw():
     text = WORD_FONT.render(display_word, 1, BLACK)
     win.blit(text, (400, 200))
 
-    # draw buttons
+    
     for letter in letters:
         x, y, ltr, visible = letter
         if visible:
